@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AutoCare.Views.ServiceIntervalsPage"
+             Title="Service Intervals" BackgroundColor="#F5F7FA"
+             Shell.TabBarIsVisible="False">
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="12">
+
+            <Border Padding="14" BackgroundColor="#FFF6E0" Stroke="#F5D58A" StrokeShape="RoundRectangle 14">
+                <VerticalStackLayout Spacing="4">
+                    <Label Text="Please follow your car owner's manual" FontAttributes="Bold" TextColor="#1F2A44"/>
+                    <Label TextColor="#1F2A44" FontSize="12"
+                           Text="Intervals differ for every car, engine and oil type. Copy the values from the Maintenance Schedule in your owner's manual. If the manual gives months, multiply by 30 (6 months = 180 days). Leave a box empty if the manual has no limit for it. At least one of km or days is needed. These defaults are only general estimates."/>
+                </VerticalStackLayout>
+            </Border>
+
+            <VerticalStackLayout Spacing="10" BindableLayout.ItemsSource="{Binding Items}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Border Padding="14" BackgroundColor="White" Stroke="#E3E8EF" StrokeShape="RoundRectangle 14">
+                            <VerticalStackLayout Spacing="6">
+                                <Label Text="{Binding ServiceType}" FontAttributes="Bold" TextColor="#1F2A44"/>
+                                <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                                    <VerticalStackLayout>
+                                        <Label Text="Every (km)" FontSize="11" TextColor="Gray"/>
+                                        <Entry Text="{Binding KmText}" Keyboard="Numeric" Placeholder="Not used" TextColor="#1F2A44"/>
+                                    </VerticalStackLayout>
+                                    <VerticalStackLayout Grid.Column="1">
+                                        <Label Text="Or every (days)" FontSize="11" TextColor="Gray"/>
+                                        <Entry Text="{Binding DaysText}" Keyboard="Numeric" Placeholder="Not used" TextColor="#1F2A44"/>
+                                    </VerticalStackLayout>
+                                </Grid>
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </VerticalStackLayout>
+
+            <Button Text="Save Intervals" Command="{Binding SaveCommand}"
+                    BackgroundColor="#0E6BA8" TextColor="White" CornerRadius="12"/>
+            <Button Text="Reset to Defaults" Command="{Binding ResetCommand}"
+                    BackgroundColor="White" TextColor="#D93025" BorderColor="#D93025" BorderWidth="1" CornerRadius="12"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

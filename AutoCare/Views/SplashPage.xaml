@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AutoCare.Views.SplashPage"
+             BackgroundColor="White">
+    <VerticalStackLayout VerticalOptions="Center" Spacing="12" Padding="30">
+        <Image Source="logo.png" HeightRequest="120" />
+        <Label Text="AutoCare" FontSize="32" FontAttributes="Bold"
+               HorizontalOptions="Center" TextColor="#1F2A44"/>
+        <Label Text="Smart Community Vehicle Maintenance Assistant"
+               FontSize="12" HorizontalOptions="Center" TextColor="Gray"/>
+        <Label Text="Version 1.0" FontSize="12" HorizontalOptions="Center"
+               TextColor="#E8833A"/>
+        <ProgressBar x:Name="Bar" Progress="0" Margin="0,40,0,0"/>
+        <Label Text="Loading..." FontSize="10" HorizontalOptions="Center" TextColor="Gray"/>
+    </VerticalStackLayout>
+</ContentPage>

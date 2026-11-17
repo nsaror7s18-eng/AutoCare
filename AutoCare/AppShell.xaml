@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:views="clr-namespace:AutoCare.Views"
+       x:Class="AutoCare.AppShell"
+       Shell.TabBarForegroundColor="#0E6BA8"
+       Shell.TabBarUnselectedColor="#6B7A90">
+
+    <TabBar>
+        <ShellContent Title="" Icon="tab_home.png"       Route="home"       ContentTemplate="{DataTemplate views:HomePage}" />
+        <ShellContent Title="" Icon="tab_history.png"    Route="history"    ContentTemplate="{DataTemplate views:HistoryPage}" />
+        <ShellContent Title="" Icon="tab_add.png"        Route="newservice" ContentTemplate="{DataTemplate views:AddServicePage}" />
+        <ShellContent Title="" Icon="tab_calculator.png" Route="calculator" ContentTemplate="{DataTemplate views:CalculatorPage}" />
+        <ShellContent Title="" Icon="tab_profile.png"    Route="profile"    ContentTemplate="{DataTemplate views:ProfilePage}" />
+    </TabBar>
+</Shell>

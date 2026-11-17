@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AutoCare.Views.AboutPage"
+             Title="About &amp; Community Support" BackgroundColor="#F5F7FA"
+             Shell.TabBarIsVisible="False">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="14">
+            <Image Source="logo.png" HeightRequest="110"/>
+            <Label Text="AutoCare" FontSize="28" FontAttributes="Bold" HorizontalOptions="Center" TextColor="#1F2A44"/>
+            <Label Text="Version 1.0" HorizontalOptions="Center" TextColor="#E8833A" FontAttributes="Bold"/>
+
+            <Border Padding="16" BackgroundColor="White" Stroke="#E3E8EF" StrokeShape="RoundRectangle 14">
+                <VerticalStackLayout Spacing="6">
+                    <Label Text="APP DESCRIPTION" FontSize="10" FontAttributes="Bold" TextColor="#E8833A"/>
+                    <Label TextColor="#1F2A44"
+                           Text="AutoCare is a Smart Community vehicle maintenance assistant for students, staff and commuter drivers. It stores vehicle details and service records, calculates the remaining kilometres and days before the next service, shows alerts before breakdowns happen, and tracks total maintenance spending."/>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border Padding="16" BackgroundColor="White" Stroke="#E3E8EF" StrokeShape="RoundRectangle 14">
+                <VerticalStackLayout Spacing="4">
+                    <Label Text="DEVELOPER DETAILS" FontSize="10" FontAttributes="Bold" TextColor="#E8833A"/>
+                    <Label Text="Ghaleb Nassar Sultan Ahmed" FontAttributes="Bold" TextColor="#1F2A44"/>
+                    <Label Text="Student ID: BSW01085195" TextColor="#1F2A44"/>
+                    <Label Text="Universiti Tenaga Nasional (UNITEN)" TextColor="#1F2A44"/>
+                    <Label Text="Course: CSNB544 Mobile Application Development" TextColor="#1F2A44"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <Label Text="© 2026 AutoCare · Smart Community Vehicle Maintenance"
+                   FontSize="11" TextColor="Gray" HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

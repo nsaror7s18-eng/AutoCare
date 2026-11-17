@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AutoCare.Views.ProfilePage"
+             Title="My Vehicle Details" BackgroundColor="#F5F7FA">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="8">
+            <Label Text="Your Name" FontSize="12" TextColor="Gray"/>
+            <Entry Text="{Binding OwnerName}" Placeholder="e.g. Ghaleb" TextColor="#1F2A44"/>
+
+            <Label Text="Vehicle Make &amp; Model" FontSize="12" TextColor="Gray"/>
+            <Picker Title="Select your car" ItemsSource="{Binding CarModels}"
+                    SelectedItem="{Binding SelectedModel}" TextColor="#1F2A44"/>
+            <Entry Text="{Binding CustomModel}" Placeholder="Type your car model"
+                   IsVisible="{Binding IsOtherSelected}" TextColor="#1F2A44"/>
+
+            <Label Text="Registration / Plate Number" FontSize="12" TextColor="Gray"/>
+            <Entry Text="{Binding PlateNumber}" Placeholder="VBK 2026" TextColor="#1F2A44"/>
+
+            <Label Text="Manufacturing Year" FontSize="12" TextColor="Gray"/>
+            <Entry Text="{Binding Year}" Keyboard="Numeric" Placeholder="2021" TextColor="#1F2A44"/>
+
+            <Label Text="Current Odometer Reading (km)" FontSize="12" TextColor="Gray"/>
+            <Entry Text="{Binding Odometer}" Keyboard="Numeric" Placeholder="45200" TextColor="#1F2A44"/>
+
+            <Button Text="Update Vehicle Specs" Command="{Binding SaveCommand}"
+                    BackgroundColor="#0E6BA8" TextColor="White" CornerRadius="12" Margin="0,12,0,0"/>
+            <Button Text="Service Intervals (from car manual)" Command="{Binding OpenIntervalsCommand}"
+                    BackgroundColor="White" TextColor="#0E6BA8" BorderColor="#0E6BA8" BorderWidth="1" CornerRadius="12"/>
+            <Button Text="About &amp; Community Support" Command="{Binding OpenAboutCommand}"
+                    BackgroundColor="White" TextColor="#1F2A44" BorderColor="#E3E8EF" BorderWidth="1" CornerRadius="12"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

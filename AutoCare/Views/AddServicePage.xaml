@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AutoCare.Views.AddServicePage"
+             Title="Add New Service" BackgroundColor="#F5F7FA"
+             Shell.TabBarIsVisible="False">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="8">
+
+            <Label Text="Services done (tick one or more)" FontSize="12" TextColor="Gray"/>
+            <VerticalStackLayout Spacing="8" BindableLayout.ItemsSource="{Binding Choices}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Border Padding="10" BackgroundColor="White" Stroke="#E3E8EF" StrokeShape="RoundRectangle 12">
+                            <Grid ColumnDefinitions="Auto,*,110" ColumnSpacing="8">
+                                <CheckBox IsChecked="{Binding IsSelected}" Color="#0E6BA8" VerticalOptions="Center"/>
+                                <Label Grid.Column="1" Text="{Binding Name}" VerticalOptions="Center"
+                                       FontAttributes="Bold" TextColor="#1F2A44"/>
+                                <Entry Grid.Column="2" Text="{Binding CostText}" Keyboard="Numeric"
+                                       Placeholder="Cost (RM)" IsVisible="{Binding IsSelected}" TextColor="#1F2A44"/>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </VerticalStackLayout>
+
+            <Label Text="Service Date" FontSize="12" TextColor="Gray" Margin="0,8,0,0"/>
+            <DatePicker Date="{Binding ServiceDate}" TextColor="#1F2A44"/>
+
+            <Label Text="Odometer at Service (km)" FontSize="12" TextColor="Gray"/>
+            <Entry Text="{Binding Odometer}" Keyboard="Numeric" Placeholder="40000" TextColor="#1F2A44"/>
+
+            <Label Text="Notes (optional, applies to all selected)" FontSize="12" TextColor="Gray"/>
+            <Editor Text="{Binding Notes}" HeightRequest="90" TextColor="#1F2A44"/>
+
+            <Button Text="Save Record" Command="{Binding SaveCommand}"
+                    BackgroundColor="#0E6BA8" TextColor="White" CornerRadius="12" Margin="0,12,0,0"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AutoCare.Views.HistoryPage"
+             x:Name="HistoryRoot"
+             Title="Service History &amp; Expenses" BackgroundColor="#F5F7FA">
+    <Grid RowDefinitions="Auto,*,Auto" Padding="16" RowSpacing="12">
+
+        <Border Grid.Row="0" BackgroundColor="#0E6BA8" Padding="18" StrokeShape="RoundRectangle 16">
+            <VerticalStackLayout Spacing="2">
+                <Label Text="TOTAL SPENT ON MAINTENANCE" FontSize="11" TextColor="#CFE6F5"/>
+                <Label Text="{Binding TotalText}" FontSize="32" FontAttributes="Bold" TextColor="White"/>
+                <Label Text="{Binding CountText}" FontSize="12" TextColor="White"/>
+            </VerticalStackLayout>
+        </Border>
+
+        <CollectionView Grid.Row="1" ItemsSource="{Binding Records}"
+                        EmptyView="No service records yet. Tap Log Service on Home.">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <SwipeView>
+                        <SwipeView.RightItems>
+                            <SwipeItems>
+                                <SwipeItem Text="Delete" BackgroundColor="#D93025"
+                                           Command="{Binding BindingContext.DeleteCommand, Source={x:Reference HistoryRoot}}"
+                                           CommandParameter="{Binding .}"/>
+                            </SwipeItems>
+                        </SwipeView.RightItems>
+
+                        <Border Margin="0,0,0,8" Padding="14" BackgroundColor="White"
+                                Stroke="#E3E8EF" StrokeShape="RoundRectangle 12">
+                            <Grid ColumnDefinitions="*,Auto">
+                                <VerticalStackLayout>
+                                    <Label Text="{Binding ServiceType}" FontAttributes="Bold" TextColor="#1F2A44"/>
+                                    <Label Text="{Binding ServiceDate, StringFormat='{0:dd MMM yyyy}'}" FontSize="12" TextColor="Gray"/>
+                                    <Label Text="{Binding Odometer, StringFormat='{0:N0} km'}" FontSize="12" TextColor="Gray"/>
+                                </VerticalStackLayout>
+                                <Label Grid.Column="1" Text="{Binding Cost, StringFormat='RM {0:N2}'}"
+                                       FontAttributes="Bold" TextColor="#0E6BA8" VerticalOptions="Center"/>
+                            </Grid>
+                        </Border>
+                    </SwipeView>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button Grid.Row="2" Text="Share Summary" Command="{Binding ShareCommand}"
+                BackgroundColor="White" TextColor="#1F2A44" BorderColor="#E3E8EF" BorderWidth="1" CornerRadius="12"/>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AutoCare.Views.AlertsPage"
+             Title="Maintenance Notifications &amp; Alerts" BackgroundColor="#F5F7FA"
+             Shell.TabBarIsVisible="False">
+    <ScrollView>
+        <VerticalStackLayout Padding="16" Spacing="12">
+
+            <Border Padding="14" BackgroundColor="White" Stroke="#E3E8EF" StrokeShape="RoundRectangle 14">
+                <Grid ColumnDefinitions="*,Auto">
+                    <Label Text="Enable Push Notifications &amp; Alerts" FontAttributes="Bold"
+                           TextColor="#1F2A44" VerticalOptions="Center"/>
+                    <Switch Grid.Column="1" IsToggled="{Binding NotificationsEnabled}"/>
+                </Grid>
+            </Border>
+
+            <Label Text="Active Alerts" FontAttributes="Bold" TextColor="#1F2A44"/>
+            <Label Text="{Binding EmptyText}" TextColor="Gray"/>
+
+            <VerticalStackLayout Spacing="10" BindableLayout.ItemsSource="{Binding Alerts}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Border Padding="14" BackgroundColor="{Binding CardColor}" StrokeThickness="0"
+                                StrokeShape="RoundRectangle 14">
+                            <VerticalStackLayout Spacing="3">
+                                <Label Text="{Binding Badge}" FontSize="10" FontAttributes="Bold"
+                                       TextColor="{Binding BadgeColor}"/>
+                                <Label Text="{Binding Message}" FontAttributes="Bold" TextColor="#1F2A44"/>
+                                <Label Text="{Binding Detail}" FontSize="12" TextColor="Gray"/>
+                            </VerticalStackLayout>
+                        </Border>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </VerticalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

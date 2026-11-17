@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AutoCare.Views.HomePage"
+             Title="Home" BackgroundColor="#F5F7FA" Shell.NavBarIsVisible="False">
+
+    <ContentPage.Resources>
+        <Style x:Key="ActionCard" TargetType="Border">
+            <Setter Property="BackgroundColor" Value="White"/>
+            <Setter Property="Stroke" Value="#E3E8EF"/>
+            <Setter Property="StrokeShape" Value="RoundRectangle 16"/>
+            <Setter Property="Padding" Value="14"/>
+            <Setter Property="HeightRequest" Value="110"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="14">
+
+            <!-- Greeting + bell -->
+            <Grid ColumnDefinitions="*,Auto">
+                <Label Text="{Binding Greeting}" FontSize="22" FontAttributes="Bold"
+                       TextColor="#1F2A44" VerticalOptions="Center"/>
+                <Border Grid.Column="1" BackgroundColor="White" Stroke="#E3E8EF"
+                        StrokeShape="RoundRectangle 22" Padding="10" WidthRequest="44" HeightRequest="44">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoAlertsCommand}"/>
+                    </Border.GestureRecognizers>
+                    <Image Source="ic_bell.png" HeightRequest="22" WidthRequest="22"/>
+                </Border>
+                <Border Grid.Column="1" BackgroundColor="#D93025" StrokeThickness="0"
+                        StrokeShape="RoundRectangle 9" HeightRequest="18" WidthRequest="18"
+                        HorizontalOptions="End" VerticalOptions="Start" Margin="0,-4,-4,0">
+                    <Label Text="{Binding AlertCount}" TextColor="White" FontSize="10"
+                           FontAttributes="Bold" HorizontalOptions="Center" VerticalOptions="Center"/>
+                </Border>
+            </Grid>
+
+            <!-- Active vehicle card -->
+            <Border Padding="16" BackgroundColor="White" Stroke="#E3E8EF" StrokeShape="RoundRectangle 16">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding GoProfileCommand}"/>
+                </Border.GestureRecognizers>
+                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="14">
+                    <Border BackgroundColor="#FDF1E7" StrokeThickness="0" StrokeShape="RoundRectangle 14"
+                            WidthRequest="56" HeightRequest="56" VerticalOptions="Start">
+                        <Image Source="ic_car.png" HeightRequest="30" WidthRequest="30"
+                               HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </Border>
+                    <VerticalStackLayout Grid.Column="1" Spacing="4">
+                        <Label Text="ACTIVE VEHICLE" FontSize="10" FontAttributes="Bold" TextColor="#E8833A"/>
+                        <Label Text="{Binding VehicleName}" FontSize="20" FontAttributes="Bold" TextColor="#1F2A44"/>
+                        <Label Text="{Binding Plate}" FontSize="12" TextColor="Gray"/>
+                        <Grid ColumnDefinitions="*,*" Margin="0,8,0,0">
+                            <VerticalStackLayout>
+                                <Label Text="Odometer" FontSize="11" TextColor="Gray"/>
+                                <Label Text="{Binding OdometerText}" FontAttributes="Bold" TextColor="#1F2A44"/>
+                            </VerticalStackLayout>
+                            <VerticalStackLayout Grid.Column="1">
+                                <Label Text="Vehicle Health" FontSize="11" TextColor="Gray"/>
+                                <Label Text="{Binding HealthText}" FontAttributes="Bold" TextColor="#1E8E3E"/>
+                                <ProgressBar Progress="{Binding HealthProgress}" ProgressColor="#1E8E3E"/>
+                            </VerticalStackLayout>
+                        </Grid>
+                    </VerticalStackLayout>
+                </Grid>
+            </Border>
+
+            <!-- Service due banner -->
+            <Border Padding="16" BackgroundColor="#FFF6E0" Stroke="#F5D58A" StrokeShape="RoundRectangle 16">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="SERVICE DUE" FontSize="10" FontAttributes="Bold" TextColor="#E8833A"/>
+                    <Label Text="{Binding DueMessage}" FontSize="15" FontAttributes="Bold" TextColor="#1F2A44"/>
+                    <Button Text="+ Add New Service" Command="{Binding GoLogCommand}"
+                            BackgroundColor="#0E6BA8" TextColor="White" CornerRadius="10"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <Label Text="Quick Actions" FontAttributes="Bold" TextColor="#1F2A44"/>
+
+            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto" ColumnSpacing="10" RowSpacing="10">
+
+                <Border Grid.Row="0" Grid.Column="0" Style="{StaticResource ActionCard}">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoLogCommand}"/>
+                    </Border.GestureRecognizers>
+                    <VerticalStackLayout Spacing="8">
+                        <Border BackgroundColor="#E6F1F9" StrokeThickness="0" StrokeShape="RoundRectangle 12"
+                                WidthRequest="44" HeightRequest="44" HorizontalOptions="Start">
+                            <Image Source="ic_log.png" HeightRequest="24" WidthRequest="24"/>
+                        </Border>
+                        <Label Text="Add New Service" FontAttributes="Bold" TextColor="#1F2A44"/>
+                        <Label Text="Record one or more services" FontSize="10" TextColor="Gray"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Grid.Row="0" Grid.Column="1" Style="{StaticResource ActionCard}">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoCalculatorCommand}"/>
+                    </Border.GestureRecognizers>
+                    <VerticalStackLayout Spacing="8">
+                        <Border BackgroundColor="#FDF1E7" StrokeThickness="0" StrokeShape="RoundRectangle 12"
+                                WidthRequest="44" HeightRequest="44" HorizontalOptions="Start">
+                            <Image Source="ic_calc.png" HeightRequest="24" WidthRequest="24"/>
+                        </Border>
+                        <Label Text="Service Calculator" FontAttributes="Bold" TextColor="#1F2A44"/>
+                        <Label Text="Check remaining km/days" FontSize="10" TextColor="Gray"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Grid.Row="1" Grid.Column="0" Style="{StaticResource ActionCard}">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoHistoryCommand}"/>
+                    </Border.GestureRecognizers>
+                    <VerticalStackLayout Spacing="8">
+                        <Border BackgroundColor="#E6F1F9" StrokeThickness="0" StrokeShape="RoundRectangle 12"
+                                WidthRequest="44" HeightRequest="44" HorizontalOptions="Start">
+                            <Image Source="ic_history.png" HeightRequest="24" WidthRequest="24"/>
+                        </Border>
+                        <Label Text="Service History" FontAttributes="Bold" TextColor="#1F2A44"/>
+                        <Label Text="Past repairs and costs" FontSize="10" TextColor="Gray"/>
+                    </VerticalStackLayout>
+                </Border>
+
+                <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource ActionCard}">
+                    <Border.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoProfileCommand}"/>
+                    </Border.GestureRecognizers>
+                    <VerticalStackLayout Spacing="8">
+                        <Border BackgroundColor="#FDF1E7" StrokeThickness="0" StrokeShape="RoundRectangle 12"
+                                WidthRequest="44" HeightRequest="44" HorizontalOptions="Start">
+                            <Image Source="ic_car.png" HeightRequest="24" WidthRequest="24"/>
+                        </Border>
+                        <Label Text="Vehicle Profile" FontAttributes="Bold" TextColor="#1F2A44"/>
+                        <Label Text="Manage car specifications" FontSize="10" TextColor="Gray"/>
+                    </VerticalStackLayout>
+                </Border>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
